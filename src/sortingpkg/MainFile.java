@@ -165,7 +165,7 @@ public class MainFile {
 		/*
 		 * This is where the magical sorting happens
 		 */
-
+		
 		ArrayList<Circle> selectedCircles = selectionSort(selectedCirclesArray);
 		ArrayList<Circle> insertedCircles = insertionSort(insertedCirclesArray);
 		ArrayList<Circle> bubbledXCircles = bubbleSort(bubbledXCirclesArray, "x");
@@ -278,6 +278,61 @@ public class MainFile {
 		 * sorting your data.  You will be be sorting your "array" so that it is in ascending order
 		 * based on the value given in "coordinate" above (either "x", "y", or "z") value of the object
 		 */
+		
+		Circle objectToIndex;
+		
+		if (coordinate.toLowerCase().equals("x")){
+			boolean swap = true;
+			
+			while (swap){
+				swap = false;
+				for (int i = 0; i < array.size()-1; i++){
+					if (array.get(i).centre().getX() > array.get(i+1).centre().getX()){
+						objectToIndex = array.get(i);
+						array.set(i, array.get(i+1));
+						array.set(i+1, objectToIndex);
+						swap = true;
+					}
+				}
+			} 
+			return array;
+		}
+		
+		else if(coordinate.toLowerCase().equals("y")){
+			boolean swap = true;
+			
+			while (swap){
+				swap = false;
+				for (int i = 0; i < array.size()-1; i++){
+					if (array.get(i).centre().getY() > array.get(i+1).centre().getY()){
+						objectToIndex = array.get(i);
+						array.set(i, array.get(i+1));
+						array.set(i+1, objectToIndex);
+						swap = true;
+					}
+				}
+			} 
+			return array;
+		}
+		
+		else if(coordinate.toLowerCase().equals("z")){
+			boolean swap = true;
+			
+			while (swap){
+				swap = false;
+				for (int i = 0; i < array.size()-1; i++){
+					if (array.get(i).centre().getZ() > array.get(i+1).centre().getZ()){
+						objectToIndex = array.get(i);
+						array.set(i, array.get(i+1));
+						array.set(i+1, objectToIndex);
+						swap = true;
+					}
+				}
+			} 
+			return array;
+			
+		}
+		
 		return new ArrayList<Circle>();
 	}
 
