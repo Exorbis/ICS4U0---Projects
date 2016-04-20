@@ -226,6 +226,7 @@ public class MainFile {
 		//for all radius values after that element and swaps the two objects
 		for (int i = 0; i < array.size()-1; i++){
 			minimum = i;
+			
 			for(int j = i+1; j < array.size(); j++){
 				if (Double.compare(array.get(minimum).radius(), array.get(j).radius()) > 0){
 					minimum = j; //if at any time object radius at minimum is not less than object radius at j, sets to j
@@ -258,11 +259,12 @@ public class MainFile {
 		//if not it will swap spots and check the previous one again, etc...
 		for (int i = 1; i < array.size(); i++){
 			int j = i;
+			
 			while (j > 0 && (array.get(j).getClass().getSimpleName()).compareTo(array.get(j-1).getClass().getSimpleName()) < 0){
-				objectToIndex = array.get(j-1);
-				array.set(j-1, array.get(j));
-				array.set(j, objectToIndex);
-				j -= 1;
+				objectToIndex = array.get(j-1); //object to be moved
+				array.set(j-1, array.get(j)); //the swap while true
+				array.set(j, objectToIndex); //the swap while true
+				j -= 1; //continue to check next previous
 			}
 		}
 		
