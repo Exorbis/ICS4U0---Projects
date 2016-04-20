@@ -210,42 +210,64 @@ public class MainFile {
 		}
 	}
 
+	/**
+	 * This function will take in the array of objects that was generated from the file and 
+	 * will sort the objects based off the radius in ascending order
+	 * 
+	 * @param array is the inputed array that requires sorting in ascending order in terms of radius
+	 * @return the sorted array in terms of radius (ascending)
+	 */
 	public static ArrayList<Circle> selectionSort(ArrayList<Circle> array) {
-		/*
-		 * Create your own selection sort algorithm here.  Do not use the built-in function for
-		 * sorting your data.  You will be be sorting your "array" so that it is in ascending order
-		 * based on the radius value of the object
-		 */
-		int minimum = 0;
-		Circle objectToIndex;
+		
+		int minimum = 0; //used to hold minimum place holder
+		Circle objectToIndex; //used to store object that will be moved
+		
+		//goes through each position of the array one at a time and checks the minimum 
+		//for all radius values after that element and swaps the two objects
 		for (int i = 0; i < array.size()-1; i++){
 			minimum = i;
 			for(int j = i+1; j < array.size(); j++){
 				if (Double.compare(array.get(minimum).radius(), array.get(j).radius()) > 0){
-					minimum = j;
+					minimum = j; //if at any time object radius at minimum is not less than object radius at j, sets to j
 					
 				}
 		
 			}
-			
-			objectToIndex = array.get(i);
-			array.set(i, array.get(minimum));
-			array.set(minimum, objectToIndex);
+	
+			objectToIndex = array.get(i); //object to be moved
+			array.set(i, array.get(minimum)); //sets minimum of element i
+			array.set(minimum, objectToIndex); //replaces previously moved element minimum with element i
 			
 		}
 		
+		return array;
+	}
+	
+	/**
+	 * This function will take in the array of objects that was generated from the file and 
+	 * will sort the objects based off the name in alphabetical ascending order
+	 * 
+	 * @param array is the input array that requires sorting in ascending order in terms of the class name
+	 * @return the sorted array in terms of class name (ascending)
+	 */
+	public static ArrayList<Circle> insertionSort(ArrayList<Circle> array) {
+
+		Circle objectToIndex; //used to store object that will be moved
+		
+		//Each pass increases the sample by one and checks if previous class is alphabetically in order
+		//if not it will swap spots and check the previous one again, etc...
+		for (int i = 1; i < array.size(); i++){
+			int j = i;
+			while (j > 0 && (array.get(j).getClass().getSimpleName()).compareTo(array.get(j-1).getClass().getSimpleName()) < 0){
+				objectToIndex = array.get(j-1);
+				array.set(j-1, array.get(j));
+				array.set(j, objectToIndex);
+				j -= 1;
+			}
+		}
 		
 		
 		return array;
-	}
-
-	public static ArrayList<Circle> insertionSort(ArrayList<Circle> array) {
-		/*
-		 * Create your own insertion sort algorithm here.  Do not use the built-in function for
-		 * sorting your data.  You will be be sorting your "array" so that it is in ascending order
-		 * alphabetically.  i.e. all Circles will be first in the array, followed by all Spheres.
-		 */
-		return new ArrayList<Circle>();
 	}
 
 	public static ArrayList<Circle> bubbleSort(ArrayList<Circle> array, String coordinate) {
