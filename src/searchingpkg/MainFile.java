@@ -13,7 +13,6 @@ import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
-import sortingpkg.Circle;
 
 /**
  * This file is for your searching assignment
@@ -60,7 +59,7 @@ public class MainFile {
 		frame.add(progressBar);
 		progressBar.setValue(0);
 
-		ArrayList<searchingpkg.Circle> objects = new ArrayList<searchingpkg.Circle>();
+		ArrayList<Circle> objects = new ArrayList<Circle>();
 		
 		
 		int progressValue = 0;
@@ -124,9 +123,9 @@ public class MainFile {
 				//Figure out if this line is a Circle or a Sphere and input
 				//the correct object into the array
 				if (thisLine.toLowerCase().charAt(0) == 's') { //Spheres
-					objects.add(new searchingpkg.Sphere(radius, vertex));	
+					objects.add(new Sphere(radius, vertex));	
 				} else if (thisLine.toLowerCase().charAt(0) == 'c') { //Circles
-					objects.add(new searchingpkg.Circle(radius, vertex));
+					objects.add(new Circle(radius, vertex));
 				}
 
 			}       
@@ -144,16 +143,16 @@ public class MainFile {
 		 * otherwise you are sorting the same list multiple times.
 		 */
 
-		ArrayList<searchingpkg.Circle> selectedCirclesArray = new ArrayList<searchingpkg.Circle>();
-		ArrayList<searchingpkg.Circle> insertedCirclesArray = new ArrayList<searchingpkg.Circle>();
-		ArrayList<searchingpkg.Circle> bubbledXCirclesArray = new ArrayList<searchingpkg.Circle>();
-		ArrayList<searchingpkg.Circle> bubbledYCirclesArray = new ArrayList<searchingpkg.Circle>();
-		ArrayList<searchingpkg.Circle> bubbledZCirclesArray = new ArrayList<searchingpkg.Circle>();
+		ArrayList<Circle> selectedCirclesArray = new ArrayList<Circle>();
+		ArrayList<Circle> insertedCirclesArray = new ArrayList<Circle>();
+		ArrayList<Circle> bubbledXCirclesArray = new ArrayList<Circle>();
+		ArrayList<Circle> bubbledYCirclesArray = new ArrayList<Circle>();
+		ArrayList<Circle> bubbledZCirclesArray = new ArrayList<Circle>();
 
 		frame.setVisible(true);
 		
 		for (int i = 0; i < objects.size(); i++) {
-			searchingpkg.Circle c = objects.get(i);
+			Circle c = objects.get(i);
 			selectedCirclesArray.add(c);
 			insertedCirclesArray.add(c);
 			bubbledXCirclesArray.add(c);
@@ -172,11 +171,11 @@ public class MainFile {
 		 * This is where the magical sorting happens
 		 */
 
-		ArrayList<searchingpkg.Circle> selectedCircles = selectionSort(selectedCirclesArray);
-		ArrayList<searchingpkg.Circle> insertedCircles = insertionSort(insertedCirclesArray);
-		ArrayList<searchingpkg.Circle> bubbledXCircles = bubbleSort(bubbledXCirclesArray, "x");
-		ArrayList<searchingpkg.Circle> bubbledYCircles = bubbleSort(bubbledYCirclesArray, "y");
-		ArrayList<searchingpkg.Circle> bubbledZCircles = bubbleSort(bubbledZCirclesArray, "z");
+		ArrayList<Circle> selectedCircles = selectionSort(selectedCirclesArray);
+		ArrayList<Circle> insertedCircles = insertionSort(insertedCirclesArray);
+		ArrayList<Circle> bubbledXCircles = bubbleSort(bubbledXCirclesArray, "x");
+		ArrayList<Circle> bubbledYCircles = bubbleSort(bubbledYCirclesArray, "y");
+		ArrayList<Circle> bubbledZCircles = bubbleSort(bubbledZCirclesArray, "z");
 
 
 		/*************************************************************/
@@ -207,7 +206,7 @@ public class MainFile {
 		 * You'll have to put in your own Input/Output here to
 		 * Ensure that your code is working properly. 
 		 *************************/
-		
+
 		while (true){
 			String breakTest = getString("Enter 'stop' to end, anything else continues");
 			
@@ -235,8 +234,8 @@ public class MainFile {
 				double tempXCircle = Double.parseDouble(valuesCircle[0]);
 				double tempYCircle = Double.parseDouble(valuesCircle[1]);
 				double tempZCircle = Double.parseDouble(valuesCircle[2]);
-				searchingpkg.SVector tempVertexCircle = new searchingpkg.SVector(tempXCircle,tempYCircle,tempZCircle);
-				searchingpkg.Circle searchCircle = new searchingpkg.Circle(circleParam1, tempVertexCircle);
+				SVector tempVertexCircle = new SVector(tempXCircle,tempYCircle,tempZCircle);
+				Circle searchCircle = new Circle(circleParam1, tempVertexCircle);
 				
 				int searchedLinearCircle = linearSearch(insertedCircles, searchCircle);
 				if (searchedLinearCircle == -1) {System.out.println("There is no such circle in the data");}
@@ -253,8 +252,8 @@ public class MainFile {
 				double tempXSphere = Double.parseDouble(valuesSphere[0]);
 				double tempYSphere = Double.parseDouble(valuesSphere[1]);
 				double tempZSphere = Double.parseDouble(valuesSphere[2]);
-				searchingpkg.SVector tempVertexSphere = new searchingpkg.SVector(tempXSphere,tempYSphere,tempZSphere);
-				searchingpkg.Sphere searchSphere = new searchingpkg.Sphere(sphereParam1, tempVertexSphere);
+				SVector tempVertexSphere = new SVector(tempXSphere,tempYSphere,tempZSphere);
+				Sphere searchSphere = new Sphere(sphereParam1, tempVertexSphere);
 				
 				int searchedLinearSphere = linearSearch(insertedCircles, searchSphere);
 				if (searchedLinearSphere == -1) {System.out.println("There is no such sphere in the data");}
@@ -269,7 +268,7 @@ public class MainFile {
 
 
 
-	public static int binarySearch(ArrayList<searchingpkg.Circle> array, int radius) {
+	public static int binarySearch(ArrayList<Circle> array, int radius) {
 		/*
 		 * Create your own binary search algorithm here.  You will be searching for information regarding the radius.
 		 * Do not use the built-in function for searching your data.  
@@ -293,7 +292,7 @@ public class MainFile {
 		else {return -1;}
 	}
 
-	public static int linearSearch(ArrayList<searchingpkg.Circle> array, searchingpkg.Circle circle) {
+	public static int linearSearch(ArrayList<Circle> array, Circle circle) {
 		/*
 		 * Create your own linear search algorithm here.  You will be searching for a particular Circle object (passed as parameter).
 		 * Do not use the built-in function for searching your data.
@@ -312,7 +311,7 @@ public class MainFile {
 		return -1;
 	}
 
-	public static int linearSearch(ArrayList<searchingpkg.Circle> array, searchingpkg.Sphere sphere) {
+	public static int linearSearch(ArrayList<Circle> array, Sphere sphere) {
 
 		/*
 		 * Create your own linear search algorithm here.  You will be searching for a particular Sphere object (passed as parameter).
@@ -341,15 +340,15 @@ public class MainFile {
 	 */
 	
 	
-	public static ArrayList<searchingpkg.Circle> selectionSort(ArrayList<searchingpkg.Circle> array) {
+	public static ArrayList<Circle> selectionSort(ArrayList<Circle> array) {
 		/*************************************************************/
 		/*********** COPY PASTE YOUR CODE INTO HERE ******************/
 		/*************************************************************/
-		return new ArrayList<searchingpkg.Circle>();
+		return new ArrayList<Circle>();
 	}
 
-	public static ArrayList<searchingpkg.Circle> insertionSort(ArrayList<searchingpkg.Circle> array) {
-		searchingpkg.Circle objectToIndex; //used to store object that will be moved
+	public static ArrayList<Circle> insertionSort(ArrayList<Circle> array) {
+		Circle objectToIndex; //used to store object that will be moved
 		int j;
 		
 		for (int i = 1; i < array.size(); i++){
@@ -365,11 +364,11 @@ public class MainFile {
 		return array;
 	}
 
-	public static ArrayList<searchingpkg.Circle> bubbleSort(ArrayList<searchingpkg.Circle> array, String coordinate) {
+	public static ArrayList<Circle> bubbleSort(ArrayList<Circle> array, String coordinate) {
 		/*************************************************************/
 		/*********** COPY PASTE YOUR CODE INTO HERE ******************/
 		/*************************************************************/
-		return new ArrayList<searchingpkg.Circle>();
+		return new ArrayList<Circle>();
 	}
 
 	/**************************************************************************************/
