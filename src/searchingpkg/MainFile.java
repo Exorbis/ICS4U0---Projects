@@ -206,7 +206,6 @@ public class MainFile {
 		 * You'll have to put in your own Input/Output here to
 		 * Ensure that your code is working properly. 
 		 *************************/
-
 		while (true){
 			String breakTest = getString("Enter 'stop' to end, anything else continues");
 			
@@ -237,7 +236,7 @@ public class MainFile {
 				SVector tempVertexCircle = new SVector(tempXCircle,tempYCircle,tempZCircle);
 				Circle searchCircle = new Circle(circleParam1, tempVertexCircle);
 				
-				int searchedLinearCircle = linearSearch(insertedCircles, searchCircle);
+				int searchedLinearCircle = linearSearch(insertedCircles, searchCircle);				
 				if (searchedLinearCircle == -1) {System.out.println("There is no such circle in the data");}
 				else {System.out.println("The circle is in position: " + searchedLinearCircle);}
 				
@@ -246,7 +245,7 @@ public class MainFile {
 				 * LINEAR SEARCH (SPHERE)
 				 * This is the gather/inputting of all values where the linearSearch occurs based off the sphere parameter as input.
 				 */
-				int sphereParam1 = getInt("Enter first parameter of circle (radius)");
+				int sphereParam1 = getInt("Enter first parameter of sphere (radius)");
 				String sphereParam2 = getString("Enter 3 values seperated by commas to represent x,y,z (vertex)");
 				String [] valuesSphere = sphereParam2.trim().split(",");
 				double tempXSphere = Double.parseDouble(valuesSphere[0]);
@@ -255,7 +254,7 @@ public class MainFile {
 				SVector tempVertexSphere = new SVector(tempXSphere,tempYSphere,tempZSphere);
 				Sphere searchSphere = new Sphere(sphereParam1, tempVertexSphere);
 				
-				int searchedLinearSphere = linearSearch(insertedCircles, searchSphere);
+				int searchedLinearSphere = linearSearch(insertedCircles, searchSphere);				
 				if (searchedLinearSphere == -1) {System.out.println("There is no such sphere in the data");}
 				else {System.out.println("The sphere is in position: " + searchedLinearSphere);}
 				
