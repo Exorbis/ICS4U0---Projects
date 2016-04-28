@@ -254,20 +254,17 @@ public class MainFile {
 	public static ArrayList<Circle> insertionSort(ArrayList<Circle> array) {
 
 		Circle objectToIndex; //used to store object that will be moved
+		int j;
 		
-		//Each pass increases the sample by one and checks if previous class is alphabetically in order
-		//if not it will swap spots and check the previous one again, etc...
 		for (int i = 1; i < array.size(); i++){
-			int j = i;
+			objectToIndex = array.get(i);
+			j = i-1;
 			
-			while (j > 0 && (array.get(j).getClass().getSimpleName()).compareTo(array.get(j-1).getClass().getSimpleName()) < 0){
-				objectToIndex = array.get(j-1); //object to be moved
-				array.set(j-1, array.get(j)); //the swap while true
-				array.set(j, objectToIndex); //the swap while true
-				j -= 1; //continue to check next previous
-			}
+			while(j >= 0 && ((objectToIndex.getClass().getSimpleName().compareTo(array.get(j).getClass().getSimpleName())) < 0)){j--;}
+			
+			array.add(j+1, objectToIndex);
+			array.remove(i+1);
 		}
-		
 		
 		return array;
 	}
