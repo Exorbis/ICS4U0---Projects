@@ -155,15 +155,6 @@ public class MainFile {
 	 * @return whether the inputed square is a magic square or not (boolean)
 	 */
 	private static boolean isMagicSquare(int [] [] square) {
-		/*
-		 * Create this function.  You take in a 2D int array, and then check to see if it is a "magic square"
-		 * A magic square has the characteristic that if you add all horizontal, vertical, and the 2 diagonals
-		 * they should add up to the same value.
-		 * 
-		 * Return a true or false value depending on whether the square is a "magic square" or not.
-		 * 
-		 * Create the documentation for this function.
-		 */
 
 		int diagonal = 0;
 		int rDiagonal = 0;
